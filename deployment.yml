@@ -1,0 +1,66 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: challenge2-dev
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: challenge2-dev
+    spec:
+      containers:
+      - name: challenge2-dev
+        image: anumsys/challenge2
+        ports:
+        - containerPort: 8080
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: challenge2-prod
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: challenge2-prod
+    spec:
+      containers:
+      - name: challenge2-prod
+        image: anumsys/challenge2
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: challenge2-dev-svc
+  labels:
+    app: challenge2-dev
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: challenge2-dev
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: challenge2-prod-svc
+  labels:
+    app: challenge2-prod
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: challenge2-prod
+  type: NodePort
+
+
+

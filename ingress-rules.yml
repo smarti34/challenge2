@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: challenge2-ingress
+spec:
+  rules:
+  - host: mm.dev.challenge2
+    http:
+      paths:
+      - backend:
+          serviceName: challenge2-dev-svc
+          servicePort: 8080
+        path: /items
+  - host: mm.prod.challenge2
+    http:
+      paths:
+      - backend:
+          serviceName: challenge2-prod-svc
+          servicePort: 8080
+        path: /items
