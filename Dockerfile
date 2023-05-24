@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:20.2-bullseye-slim
 
 # Create app directory
 WORKDIR /home/node/challenge2
