@@ -1,4 +1,4 @@
-FROM node:20.2-bullseye-slim
+FROM node:iron-bullseye-slim
 
 # Create app directory
 WORKDIR /home/node/challenge2
